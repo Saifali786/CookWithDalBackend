@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, "./uploads")));
 app.use(express.static(path.join(__dirname, "./useruploads")));
 
 const whitelistOrigins = [
-  "https://web-cs-dal-ca-cwd-group04-csci5709-a3.netlify.app/",
+  "https://web-cs-dal-ca-cwd-group04-csci5709-a3.netlify.app:3000", ""
 ];
 const corsOptions = {
   origin: (origin, callback) => {
