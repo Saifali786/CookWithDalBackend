@@ -16,16 +16,10 @@ const app = express();
 app.use(express.static(path.join(__dirname, "./uploads")));
 app.use(express.static(path.join(__dirname, "./useruploads")));
 
-const whitelistOrigins = [
-  "https://web-cs-dal-ca-cwd-group04-csci5709-a3.netlify.app/",
-];
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (!origin || whitelistOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
+  origin: "*",
+  headers: {
+    "Access-Control-Allow-Headers": "Authorization",
   },
 };
 
