@@ -12,32 +12,24 @@ const bookmarkRouter = require("./src/routes/BookmarkRoutes");
 require("dotenv").config();
 
 const app = express();
+app.use(function(req, res, next) {
+      // res.header("Access-Control-Allow-Origin", "*");
+      const allowedOrigins = ['https://web-cs-dal-ca-cwd-group04-csci5709-a3.netlify.app/'];
+      const origin = req.headers.origin;
+      if (allowedOrigins.includes(origin)) {
+           res.setHeader('Access-Control-Allow-Origin', origin);
+      }
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+      res.header("Access-Control-Allow-credentials", true);
+      res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE");
+      next();
+    });
 
 app.use(express.static(path.join(__dirname, "./uploads")));
 app.use(express.static(path.join(__dirname, "./useruploads")));
 
-const whitelistOrigins = [
-  "https://web-cs-dal-ca-cwd-group04-csci5709-a3.netlify.app:3000", ""
-];
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (!origin || whitelistOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  headers: {
-    "Access-Control-Allow-Headers": "Authorization",
-  },
-};
 
 //middleware
-app.use(cors(corsOptions));
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/shopping-list", shoppingListRouter);
