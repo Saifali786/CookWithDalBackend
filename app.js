@@ -16,8 +16,17 @@ const app = express();
 app.use(express.static(path.join(__dirname, "./uploads")));
 app.use(express.static(path.join(__dirname, "./useruploads")));
 
+const whitelistOrigins = [
+  "https://web-cs-dal-ca-cwd-group04-csci5709-a3.netlify.app/",
+];
 const corsOptions = {
-  origin: "*",
+  origin: (origin, callback) => {
+    if (!origin || whitelistOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   headers: {
     "Access-Control-Allow-Headers": "Authorization",
   },
@@ -25,6 +34,10 @@ const corsOptions = {
 
 //middleware
 app.use(cors(corsOptions));
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/shopping-list", shoppingListRouter);
