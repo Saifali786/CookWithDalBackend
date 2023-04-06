@@ -16,7 +16,10 @@ const app = express();
 app.use(express.static(path.join(__dirname, "./uploads")));
 app.use(express.static(path.join(__dirname, "./useruploads")));
 
-const whitelistOrigins = ["http://localhost:3000", ""];
+const whitelistOrigins = [
+  "https://web-cs-dal-ca-cwd-group04-csci5709-a3.netlify.app/",
+  "",
+];
 const corsOptions = {
   origin: (origin, callback) => {
     if (!origin || whitelistOrigins.indexOf(origin) !== -1) {
@@ -41,10 +44,13 @@ app.use("/api/images", ImageRoutes);
 
 //configure mongoose
 mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    "mongodb+srv://admin:admin@cluster0.y7706nu.mongodb.net/cook-with-dal?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => console.log("DB Connection Successfull"))
   .catch((err) => {
     console.error(err);
