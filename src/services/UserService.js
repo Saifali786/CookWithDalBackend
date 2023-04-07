@@ -1,4 +1,3 @@
-
 const UserModel = require("../models/User");
 const RecipeModel = require("../models/Recipe");
 const LikesCommentsModel = require("../models/RecipesLikedByUsers");
@@ -18,12 +17,14 @@ exports.updatePassword = async (email, password) => {
   );
 };
 exports.updateUserByEmail = async (email, updates) => {
-  console.log("update user by email")
-  console.log(email)
-  console.log(updates)
-  const user = await UserModel.findOneAndUpdate( { email: email } , updates);
+  console.log("update user by email");
+  console.log(email);
+  // console.log(updates.photo);
+  const user = await UserModel.findOneAndUpdate({ email: email }, updates, {
+    returnOriginal: false,
+  });
   console.log("user in by email service");
-  console.log(user)
+  console.log(user);
 
   return user;
 };
@@ -31,16 +32,16 @@ exports.updateUserByEmail = async (email, updates) => {
 exports.deleteUserByEmail = async (email) => {
   email = email.email;
 
-  console.log("Inside delete user service ---", email)
+  console.log("Inside delete user service ---", email);
 
   // const likesComments = await RecipeModel.where("userId").equals(email)
   // console.log("likesCommentsToDelete", likesComments);
-  
 
   const response = await UserModel.findOneAndDelete({ email: email });
-  console.log("---response----")
+  const response1 = await BookmarkModel.deleteMany({ userId: email });
+  console.log("delete many response");
+  console.log(response1);
+  console.log("---response----");
   console.log(response);
   return response;
 };
-
-

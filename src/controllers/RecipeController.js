@@ -172,12 +172,14 @@ exports.updateCommentById = async (req, res) => {
 };
 
 exports.addRecipe = async (req, res) => {
+  console.log("req.body inside add recipe controller");
   const recipeData = req.body;
+  console.log(req.body);
   const recipeService = new RecipeService();
 
   try {
-    let imagePath = req.file.path;
-    const recipe = await recipeService.createRecipe(recipeData, imagePath);
+    // let imagePath = req.file.path;
+    const recipe = await recipeService.createRecipe(recipeData);
     res.status(201).json(recipe);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -187,7 +189,7 @@ exports.addRecipe = async (req, res) => {
 exports.updateRecipe = async (req, res) => {
   const { recipeId } = req.params;
   const recipeData = req.body;
-  recipeData["image"] = req.file.path;
+  // recipeData["image"] = req.file.path;
   const recipeService = new RecipeService();
 
   try {

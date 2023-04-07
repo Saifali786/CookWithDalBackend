@@ -1,5 +1,5 @@
 const express = require("express");
-const multer = require('multer');
+const multer = require("multer");
 const {
   addUser,
   authenticateUser,
@@ -12,12 +12,12 @@ const {
   deleteUser,
 } = require("../controllers/UserController");
 const storage = multer.diskStorage({
-	destination: function (req, file, cb) {
-		cb(null, 'uploads')
-	},
-	filename: function (req, file, cb) {
-		cb(null, Date.now() + '_' + file.originalname)
-	}
+  destination: function (req, file, cb) {
+    cb(null, "uploads");
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "_" + file.originalname);
+  },
 });
 
 const upload = multer({ storage: storage });
@@ -28,7 +28,8 @@ router.route("/authenticateUser").post(authenticateUser);
 router.route("/verifyEmail").post(verifyEmail);
 // router.route("/getQuestion").get(getQuestion);
 router.route("/getUser/:email").get(getUserByEmail);
-router.route("/updateUser/:email").put(upload.single('photo'), updateUser);
+// router.route("/updateUser/:email").put(upload.single('photo'), updateUser);
+router.route("/updateUser/:email").put(updateUser);
 router.route("/updatePassword").put(updatePassword);
 router.route("/verifyAnswer").post(verifyAnswer);
 
@@ -36,5 +37,3 @@ router.route("/verifyAnswer").post(verifyAnswer);
 router.route("/deleteUser/:email").delete(deleteUser);
 
 module.exports = router;
-
-

@@ -8,7 +8,8 @@ const { v4: uuidv4 } = require("uuid");
 class RecipeService {
   constructor() {}
 
-  async createRecipe(recipeData, imagePath) {
+  async createRecipe(recipeData) {
+    console.log("inside create recipe service");
     const recipe_id = uuidv4().slice(0, 5);
 
     const {
@@ -19,13 +20,14 @@ class RecipeService {
       instructions,
       servings,
       prepTime,
+      image,
     } = recipeData;
 
     const newRecipe = new Recipe({
       name,
       recipe_id,
       emailId,
-      image: imagePath,
+      image,
       description,
       ingredients,
       instructions,

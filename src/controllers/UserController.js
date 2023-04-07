@@ -160,10 +160,11 @@ exports.updateUser = async (req, res) => {
     const email = req.params.email;
 
     console.log(email);
-    let photoPath = req.file?.path;
-    const { firstName, lastName, bio } = req.body;
+    // let photoPath = req.file?.path;
+    const { firstName, lastName, bio, photo } = req.body;
     console.log("firstname");
     console.log(firstName);
+    console.log(photo);
 
     const existingUser = await UserService.findUser({ email });
     console.log("printing existing user");
@@ -181,7 +182,7 @@ exports.updateUser = async (req, res) => {
       firstName,
       lastName,
       bio,
-      photo: photoPath,
+      photo,
     });
 
     res.json({

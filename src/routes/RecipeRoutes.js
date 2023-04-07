@@ -15,7 +15,7 @@ const {
   updateRecipe,
   getRecipeByRecipeId,
   getAllRecipesByEmail,
-  deleteRecipeById
+  deleteRecipeById,
 
   // getImageBlobById,
 } = require("../controllers/RecipeController");
@@ -39,15 +39,14 @@ router.route("/unlike/:id/:userId").put(unlikeRecipe);
 router.route("/comment/add/:recipeId").post(addComment);
 router.route("/comment/:recipeId/:commentId").delete(deleteCommentById);
 router.route("/comment/:recipeId/:commentId").put(updateCommentById);
-router.route("/recipes").post(upload.single("image"), addRecipe);
+router.route("/recipes").post(addRecipe);
 router.route("/details/getRecipe/:recipeId").get(getRecipeByRecipeId);
 router.route("/:id/:userId").get(getRecipeById);
 router.route("/").get(getAllRecipes);
 router.route("/getUserRecipes").get(getAllRecipesByEmail);
-router.route("/updateRecipe/:recipeId").put(upload.single('image'), updateRecipe);
+router.route("/updateRecipe/:recipeId").put(updateRecipe);
 
 //delete recipe by id
-router.route("/deleteRecipe/:recipeId").delete(deleteRecipeById)
-
+router.route("/deleteRecipe/:recipeId").delete(deleteRecipeById);
 
 module.exports = router;
