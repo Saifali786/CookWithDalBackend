@@ -1,3 +1,4 @@
+/* Author : Faiza Umatiya, Saifali Prasla */
 const UserModel = require("../models/User");
 const RecipeModel = require("../models/Recipe");
 const LikesCommentsModel = require("../models/RecipesLikedByUsers");

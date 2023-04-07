@@ -1,3 +1,4 @@
+/* Author : Parul Raich */
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 

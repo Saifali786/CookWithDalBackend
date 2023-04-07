@@ -1,3 +1,5 @@
+/* Author : Parul Raich */
+
 const path = require("path");
 
 exports.getImageBlobById = async (req, res) => {

@@ -1,3 +1,4 @@
+/* Author : Parul Raich */
 const Bookmark = require("../models/Bookmark");
 
 exports.isBookmarked = async (recipeId, userId) => {

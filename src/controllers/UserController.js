@@ -1,3 +1,4 @@
+/* Author : Faiza Umatiya, Saifali Prasla */
 const UserService = require("../services/UserService");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;

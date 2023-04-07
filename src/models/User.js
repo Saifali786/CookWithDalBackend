@@ -1,3 +1,4 @@
+/* Author : Faiza Umatiya, Saifali Prasla */
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -31,8 +32,8 @@ const UserSchema = Schema({
     type: String,
   },
   bio: {
-    type: String
-  }
+    type: String,
+  },
 });
 
 UserSchema.method("transform", function () {
@@ -43,4 +44,3 @@ UserSchema.method("transform", function () {
 });
 
 module.exports = mongoose.model("User", UserSchema);
-

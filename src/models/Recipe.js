@@ -1,4 +1,4 @@
-/* Author: Anuj Dawar, Sagar */
+/* Author: Anuj Dawar, Sagarkumar Vaghasia */
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;

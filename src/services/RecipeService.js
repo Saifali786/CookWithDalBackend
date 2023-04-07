@@ -1,4 +1,4 @@
-/* Author: Anuj Dawar, Sagar */
+/* Author: Anuj Dawar, Sagarkumar Vaghasia */
 
 const Recipe = require("../models/Recipe");
 const Bookmark = require("../models/Bookmark");
